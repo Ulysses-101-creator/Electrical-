@@ -1,0 +1,72 @@
+services:
+  - type: web
+    name: electricquote-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: electricquote-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: electricquote-redis
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: PASSWORD_HASH_PEPPER
+        generateValue: true
+      - key: CORS_ALLOWED_ORIGINS
+        sync: false
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: STORAGE_ACCESS_KEY_ID
+        sync: false
+      - key: STORAGE_SECRET_ACCESS_KEY
+        sync: false
+      - key: STORAGE_BUCKET_NAME
+        sync: false
+      - key: EMAIL_PROVIDER_API_KEY
+        sync: false
+      - key: SMS_PROVIDER_API_KEY
+        sync: false
+      - key: FRONTEND_BASE_URL
+        sync: false
+
+  - type: worker
+    name: electricquote-quote-expiry-job
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    dockerCommand: python -m app.jobs.quote_expiry
+    plan: starter
+    schedule: "0 * * * *"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: electricquote-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: electricquote-redis
+          property: connectionString
+
+databases:
+  - name: electricquote-db
+    plan: starter
+    postgresMajorVersion: "16"
+
+services_redis:
+  - type: redis
+    name: electricquote-redis
+    plan: starter
+    ipAllowList: []
