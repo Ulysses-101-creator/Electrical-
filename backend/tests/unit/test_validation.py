@@ -65,6 +65,4 @@ def test_validate_file_upload_rejects_oversized_file():
 
 
 def test_validate_file_upload_accepts_valid_image():
-    validate_file_upload(
-        content_type="image/jpeg", size_bytes=1_000_000, max_size_bytes=5_000_000
-    )
+    validate_file_upload(content_type="image/jpeg", size_bytes=1_000_000, max_size_bytes=5_000_000)

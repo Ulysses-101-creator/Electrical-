@@ -59,10 +59,7 @@ def configure_logging() -> None:
 
     handler = logging.StreamHandler(sys.stdout)
     formatter = jsonlogger.JsonFormatter(
-        fmt=(
-            "%(asctime)s %(levelname)s %(name)s %(message)s "
-            "%(request_id)s %(user_id)s"
-        ),
+        fmt=("%(asctime)s %(levelname)s %(name)s %(message)s " "%(request_id)s %(user_id)s"),
         rename_fields={"asctime": "timestamp", "levelname": "level", "name": "logger"},
     )
     handler.setFormatter(formatter)

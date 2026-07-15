@@ -109,9 +109,7 @@ async def create_quote(
     audit_service: AuditSvc,
 ):
     quote = await quote_service.create(current_user, payload)
-    await audit_service.record(
-        action="quote.created", user_id=current_user.id, quote_id=quote.id
-    )
+    await audit_service.record(action="quote.created", user_id=current_user.id, quote_id=quote.id)
     return QuoteRead.model_validate(quote)
 
 
@@ -281,9 +279,7 @@ async def send_quote(
                 "This customer has no email on file.",
                 field_errors=[{"field": "email", "issue": "required to send via email"}],
             )
-        pdf_bytes = pdf_service.render(
-            quote=quote, user=current_user, customer_name=customer.name
-        )
+        pdf_bytes = pdf_service.render(quote=quote, user=current_user, customer_name=customer.name)
         await notification_service.send_quote_email(
             quote=quote, user=current_user, customer=customer, pdf_bytes=pdf_bytes
         )

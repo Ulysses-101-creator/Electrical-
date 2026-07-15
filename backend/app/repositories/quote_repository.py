@@ -54,16 +54,12 @@ class QuoteRepository(BaseRepository[Quote]):
 
     async def list_for_customer(self, customer_id: uuid.UUID) -> list[Quote]:
         stmt = (
-            select(Quote)
-            .where(Quote.customer_id == customer_id)
-            .order_by(Quote.created_at.desc())
+            select(Quote).where(Quote.customer_id == customer_id).order_by(Quote.created_at.desc())
         )
         result = await self.session.execute(stmt)
         return list(result.scalars().all())
 
-    async def get_item_for_quote(
-        self, quote_id: uuid.UUID, item_id: uuid.UUID
-    ) -> QuoteItem | None:
+    async def get_item_for_quote(self, quote_id: uuid.UUID, item_id: uuid.UUID) -> QuoteItem | None:
         stmt = select(QuoteItem).where(QuoteItem.id == item_id, QuoteItem.quote_id == quote_id)
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
@@ -71,9 +67,7 @@ class QuoteRepository(BaseRepository[Quote]):
     async def get_photo_for_quote(
         self, quote_id: uuid.UUID, photo_id: uuid.UUID
     ) -> QuotePhoto | None:
-        stmt = select(QuotePhoto).where(
-            QuotePhoto.id == photo_id, QuotePhoto.quote_id == quote_id
-        )
+        stmt = select(QuotePhoto).where(QuotePhoto.id == photo_id, QuotePhoto.quote_id == quote_id)
         result = await self.session.execute(stmt)
         return result.scalar_one_or_none()
 

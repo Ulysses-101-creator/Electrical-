@@ -50,7 +50,5 @@ def test_quote_totals_zero_markup_on_non_material_categories():
         LineItemInput(category="labor", quantity=Decimal("1"), unit_price=Decimal("100")),
         LineItemInput(category="other", quantity=Decimal("1"), unit_price=Decimal("50")),
     ]
-    result = calculate_quote_totals(
-        items, tax_rate=Decimal("0"), material_markup_pct=Decimal("50")
-    )
+    result = calculate_quote_totals(items, tax_rate=Decimal("0"), material_markup_pct=Decimal("50"))
     assert result.subtotal == Decimal("150.00")

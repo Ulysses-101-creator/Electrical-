@@ -94,9 +94,7 @@ class AuthService:
         attempts_key = f"login_attempts:{email.lower()}"
         attempts = int(await self.redis.get(attempts_key) or 0)
         if attempts >= _MAX_LOGIN_ATTEMPTS:
-            raise AccountLockedError(
-                "Too many failed login attempts. Please try again later."
-            )
+            raise AccountLockedError("Too many failed login attempts. Please try again later.")
 
         user = await self.user_repo.get_by_email(email)
         if not user or not user.password_hash or not verify_password(password, user.password_hash):
@@ -154,8 +152,7 @@ class AuthService:
             user_id=user.id,
             refresh_token_hash=hash_refresh_token(raw_refresh_token),
             device_info=device_info,
-            expires_at=datetime.now(UTC)
-            + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
+            expires_at=datetime.now(UTC) + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
         )
         await self.session_repo.add(session)
         await self.session_repo.commit()
@@ -193,9 +190,7 @@ class AuthService:
             # Do not reveal account existence.
             return
         reset_token = generate_refresh_token()
-        await self.redis.set(
-            f"password_reset:{reset_token}", str(user.id), ex=15 * 60
-        )
+        await self.redis.set(f"password_reset:{reset_token}", str(user.id), ex=15 * 60)
         logger.info("password_reset_requested", extra={"user_id": str(user.id)})
         # NOTE: dispatch via EmailClient in the API layer/notification service.
 

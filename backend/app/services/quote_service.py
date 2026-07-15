@@ -122,7 +122,12 @@ class QuoteService:
     # --- Update / delete ---
 
     async def update(
-        self, user_id: uuid.UUID, quote_id: uuid.UUID, data: QuoteUpdateRequest, *, force: bool = False
+        self,
+        user_id: uuid.UUID,
+        quote_id: uuid.UUID,
+        data: QuoteUpdateRequest,
+        *,
+        force: bool = False,
     ) -> Quote:
         quote = await self.get(user_id, quote_id)
         validate_quote_editable(quote.status, force=force)
@@ -151,9 +156,7 @@ class QuoteService:
         await self.quote_repo.delete(quote)
         await self.quote_repo.commit()
 
-    async def set_status(
-        self, user_id: uuid.UUID, quote_id: uuid.UUID, new_status: str
-    ) -> Quote:
+    async def set_status(self, user_id: uuid.UUID, quote_id: uuid.UUID, new_status: str) -> Quote:
         quote = await self.get(user_id, quote_id)
         if not is_valid_transition(quote.status, new_status):
             raise ConflictError(f"Cannot transition quote from {quote.status} to {new_status}")

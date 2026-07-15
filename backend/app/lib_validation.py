@@ -87,6 +87,4 @@ def validate_quote_editable(status: str, *, force: bool = False) -> None:
     from app.core.exceptions import ConflictError
 
     if status == "accepted" and not force:
-        raise ConflictError(
-            "This quote has been accepted. Confirm to continue editing it."
-        )
+        raise ConflictError("This quote has been accepted. Confirm to continue editing it.")

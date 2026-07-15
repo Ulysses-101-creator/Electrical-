@@ -23,12 +23,8 @@ class User(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     business_name: Mapped[str] = mapped_column(String(255), nullable=False)
     logo_url: Mapped[str | None] = mapped_column(Text, nullable=True)
 
-    default_labor_rate: Mapped[Decimal] = mapped_column(
-        Numeric(10, 2), nullable=False, default=0
-    )
-    default_callout_fee: Mapped[Decimal] = mapped_column(
-        Numeric(10, 2), nullable=False, default=0
-    )
+    default_labor_rate: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False, default=0)
+    default_callout_fee: Mapped[Decimal] = mapped_column(Numeric(10, 2), nullable=False, default=0)
     default_tax_rate: Mapped[Decimal] = mapped_column(Numeric(5, 4), nullable=False, default=0)
     default_material_markup_pct: Mapped[Decimal] = mapped_column(
         Numeric(5, 2), nullable=False, default=0

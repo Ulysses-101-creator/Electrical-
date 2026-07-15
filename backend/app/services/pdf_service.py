@@ -106,7 +106,12 @@ class PDFService:
                         ("FONTSIZE", (0, 0), (-1, -1), 9),
                         ("ALIGN", (2, 0), (-1, -1), "RIGHT"),
                         ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d1d5db")),
-                        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#f9fafb")]),
+                        (
+                            "ROWBACKGROUNDS",
+                            (0, 1),
+                            (-1, -1),
+                            [colors.white, colors.HexColor("#f9fafb")],
+                        ),
                         ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                         ("TOPPADDING", (0, 0), (-1, -1), 6),
                         ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
@@ -147,9 +152,7 @@ class PDFService:
         doc.build(elements)
         return buffer.getvalue()
 
-    async def generate_and_upload(
-        self, *, quote: Quote, user: User, customer_name: str
-    ) -> str:
+    async def generate_and_upload(self, *, quote: Quote, user: User, customer_name: str) -> str:
         pdf_bytes = self.render(quote=quote, user=user, customer_name=customer_name)
         key = self.storage_client.build_key(
             prefix=f"quotes/{quote.id}/pdf", filename=f"quote-v{quote.pdf_version + 1}.pdf"

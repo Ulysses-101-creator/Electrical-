@@ -68,9 +68,9 @@ class ClaudeClient:
         return self._parse_suggestions(text_block.text)
 
     def _parse_suggestions(self, raw_text: str) -> list[AISuggestedItem]:
-        cleaned = raw_text.strip().removeprefix("```json").removeprefix("```").removesuffix(
-            "```"
-        ).strip()
+        cleaned = (
+            raw_text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
+        )
         try:
             data = json.loads(cleaned)
         except json.JSONDecodeError as exc:

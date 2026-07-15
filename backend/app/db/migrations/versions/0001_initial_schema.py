@@ -5,6 +5,7 @@ Revises:
 Create Date: 2026-07-12
 
 """
+
 from collections.abc import Sequence
 
 import sqlalchemy as sa
@@ -36,8 +37,12 @@ def upgrade() -> None:
             "default_material_markup_pct", sa.Numeric(5, 2), nullable=False, server_default="0"
         ),
         sa.Column("email_verified", sa.Boolean(), nullable=False, server_default="false"),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
         sa.Column("deleted_at", sa.DateTime(timezone=True), nullable=True),
         sa.CheckConstraint(
             "email IS NOT NULL OR phone IS NOT NULL", name="ck_users_email_or_phone"
@@ -61,15 +66,17 @@ def upgrade() -> None:
         sa.Column("address", sa.Text(), nullable=True),
         sa.Column("notes", sa.Text(), nullable=True),
         sa.Column("is_archived", sa.Boolean(), nullable=False, server_default="false"),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
     op.create_index("ix_customers_user_archived", "customers", ["user_id", "is_archived"])
     op.create_index("ix_customers_user_name", "customers", ["user_id", "name"])
     op.create_index("ix_customers_user_phone", "customers", ["user_id", "phone"])
-    op.execute(
-        "CREATE INDEX ix_customers_name_trgm ON customers USING gin (name gin_trgm_ops)"
-    )
+    op.execute("CREATE INDEX ix_customers_name_trgm ON customers USING gin (name gin_trgm_ops)")
 
     op.create_table(
         "quotes",
@@ -101,8 +108,12 @@ def upgrade() -> None:
         sa.Column("pdf_version", sa.Integer(), nullable=False, server_default="0"),
         sa.Column("sent_at", sa.DateTime(timezone=True), nullable=True),
         sa.Column("responded_at", sa.DateTime(timezone=True), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
         sa.CheckConstraint(
             "status IN ('draft','sent','accepted','declined','expired')", name="ck_quotes_status"
         ),
@@ -127,8 +138,12 @@ def upgrade() -> None:
         sa.Column("unit_price", sa.Numeric(10, 2), nullable=False),
         sa.Column("sort_order", sa.Integer(), nullable=False, server_default="0"),
         sa.Column("is_ai_generated", sa.Boolean(), nullable=False, server_default="false"),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
-        sa.Column("updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
+        sa.Column(
+            "updated_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
         sa.CheckConstraint(
             "category IN ('labor','material','callout','other')",
             name="ck_quote_items_category",
@@ -149,7 +164,9 @@ def upgrade() -> None:
         ),
         sa.Column("storage_url", sa.Text(), nullable=False),
         sa.Column("sort_order", sa.Integer(), nullable=False, server_default="0"),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
     op.create_index("ix_quote_photos_quote_sort", "quote_photos", ["quote_id", "sort_order"])
 
@@ -165,7 +182,9 @@ def upgrade() -> None:
         sa.Column("refresh_token_hash", sa.String(255), nullable=False),
         sa.Column("device_info", sa.String(255), nullable=True),
         sa.Column("expires_at", sa.DateTime(timezone=True), nullable=False),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
         sa.Column("revoked_at", sa.DateTime(timezone=True), nullable=True),
     )
     op.create_index("ix_sessions_refresh_token_hash", "sessions", ["refresh_token_hash"])
@@ -188,7 +207,9 @@ def upgrade() -> None:
         ),
         sa.Column("action", sa.String(50), nullable=False),
         sa.Column("metadata", postgresql.JSONB(), nullable=True),
-        sa.Column("created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False),
+        sa.Column(
+            "created_at", sa.DateTime(timezone=True), server_default=sa.func.now(), nullable=False
+        ),
     )
     op.create_index("ix_audit_logs_quote_created", "audit_logs", ["quote_id", "created_at"])
 
