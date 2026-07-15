@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Request, status
 
-from app.api.deps import AuthSvc, RedisDep
-from app.core.rate_limit import client_identifier, enforce_rate_limit
+from app.api.deps import AuthSvc
 from app.core.config import settings
+from app.core.rate_limit import client_identifier, enforce_rate_limit
 from app.schemas.auth import (
     AuthResponse,
     ForgotPasswordRequest,

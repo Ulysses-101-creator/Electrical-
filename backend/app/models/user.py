@@ -37,6 +37,6 @@ class User(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     email_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
     deleted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
-    customers: Mapped[list["Customer"]] = relationship(back_populates="user")  # noqa: F821
-    quotes: Mapped[list["Quote"]] = relationship(back_populates="user")  # noqa: F821
-    sessions: Mapped[list["Session"]] = relationship(back_populates="user")  # noqa: F821
+    customers: Mapped[list[Customer]] = relationship(back_populates="user")  # noqa: F821
+    quotes: Mapped[list[Quote]] = relationship(back_populates="user")  # noqa: F821
+    sessions: Mapped[list[Session]] = relationship(back_populates="user")  # noqa: F821

@@ -40,4 +40,4 @@ class QuoteItem(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     sort_order: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
     is_ai_generated: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    quote: Mapped["Quote"] = relationship(back_populates="items")  # noqa: F821
+    quote: Mapped[Quote] = relationship(back_populates="items")  # noqa: F821

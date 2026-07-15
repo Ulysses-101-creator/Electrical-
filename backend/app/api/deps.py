@@ -15,7 +15,6 @@ from fastapi import Depends, Header
 from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.core.config import settings
 from app.core.exceptions import UnauthorizedError
 from app.core.logging import user_id_ctx
 from app.core.rate_limit import get_redis

@@ -20,4 +20,4 @@ class QuotePhoto(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     storage_url: Mapped[str] = mapped_column(Text, nullable=False)
     sort_order: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
 
-    quote: Mapped["Quote"] = relationship(back_populates="photos")  # noqa: F821
+    quote: Mapped[Quote] = relationship(back_populates="photos")  # noqa: F821

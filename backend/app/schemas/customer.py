@@ -59,7 +59,7 @@ class CustomerListResponse(APIModel):
 
 class CustomerDetailResponse(APIModel):
     customer: CustomerRead
-    quotes: list["QuoteSummary"]  # noqa: F821
+    quotes: list[QuoteSummary]  # noqa: F821
 
 
 from app.schemas.quote import QuoteSummary  # noqa: E402

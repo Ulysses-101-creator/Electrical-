@@ -7,7 +7,7 @@ input shape (via Pydantic) and delegate everything else to this service.
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from redis.asyncio import Redis
 
@@ -154,7 +154,7 @@ class AuthService:
             user_id=user.id,
             refresh_token_hash=hash_refresh_token(raw_refresh_token),
             device_info=device_info,
-            expires_at=datetime.now(timezone.utc)
+            expires_at=datetime.now(UTC)
             + timedelta(days=settings.REFRESH_TOKEN_EXPIRE_DAYS),
         )
         await self.session_repo.add(session)

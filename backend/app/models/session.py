@@ -29,4 +29,4 @@ class Session(UUIDPrimaryKeyMixin, Base):
     )
     revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
-    user: Mapped["User"] = relationship(back_populates="sessions")  # noqa: F821
+    user: Mapped[User] = relationship(back_populates="sessions")  # noqa: F821

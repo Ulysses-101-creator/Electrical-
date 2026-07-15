@@ -6,7 +6,7 @@ deployment platform's cron/scheduled-job feature (see infra/render.yaml).
 from __future__ import annotations
 
 import asyncio
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from app.core.logging import configure_logging, get_logger
 from app.db.session import AsyncSessionLocal
@@ -18,7 +18,7 @@ logger = get_logger(__name__)
 async def expire_overdue_quotes() -> int:
     async with AsyncSessionLocal() as session:
         repo = QuoteRepository(session)
-        overdue = await repo.find_expired_but_unmarked(datetime.now(timezone.utc))
+        overdue = await repo.find_expired_but_unmarked(datetime.now(UTC))
 
         for quote in overdue:
             quote.status = "expired"

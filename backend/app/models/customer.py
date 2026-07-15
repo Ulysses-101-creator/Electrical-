@@ -28,5 +28,5 @@ class Customer(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
     is_archived: Mapped[bool] = mapped_column(Boolean, nullable=False, default=False)
 
-    user: Mapped["User"] = relationship(back_populates="customers")  # noqa: F821
-    quotes: Mapped[list["Quote"]] = relationship(back_populates="customer")  # noqa: F821
+    user: Mapped[User] = relationship(back_populates="customers")  # noqa: F821
+    quotes: Mapped[list[Quote]] = relationship(back_populates="customer")  # noqa: F821

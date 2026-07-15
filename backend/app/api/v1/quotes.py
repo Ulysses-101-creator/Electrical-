@@ -18,12 +18,12 @@ from app.api.deps import (
 )
 from app.core.config import settings
 from app.core.exceptions import (
-    ConflictError,
     NotFoundError,
     UnsupportedMediaTypeError,
     ValidationAppError,
 )
-from app.core.rate_limit import client_identifier, enforce_rate_limit
+from app.core.rate_limit import enforce_rate_limit
+from app.integrations.storage_client import get_storage_client
 from app.lib_validation import validate_file_upload
 from app.schemas.quote import (
     QuoteCreateRequest,
@@ -44,7 +44,6 @@ from app.schemas.quote import (
     QuoteTotals,
     QuoteUpdateRequest,
 )
-from app.integrations.storage_client import get_storage_client
 
 router = APIRouter(prefix="/quotes", tags=["quotes"])
 

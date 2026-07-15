@@ -5,7 +5,7 @@ line items, status transitions, and sharing.
 from __future__ import annotations
 
 import uuid
-from datetime import date, timedelta
+from datetime import UTC, date, timedelta
 
 from app.core.exceptions import ConflictError, NotFoundError, ValidationAppError
 from app.core.security import generate_share_token
@@ -159,9 +159,9 @@ class QuoteService:
             raise ConflictError(f"Cannot transition quote from {quote.status} to {new_status}")
         quote.status = new_status
         if new_status in ("accepted", "declined"):
-            from datetime import datetime, timezone
+            from datetime import datetime
 
-            quote.responded_at = datetime.now(timezone.utc)
+            quote.responded_at = datetime.now(UTC)
         await self.quote_repo.commit()
         return quote
 
@@ -269,10 +269,10 @@ class QuoteService:
         if not is_valid_transition(quote.status, QuoteStatus.SENT.value):
             raise ConflictError(f"Cannot send a quote in status '{quote.status}'")
 
-        from datetime import datetime, timezone
+        from datetime import datetime
 
         quote.status = QuoteStatus.SENT
-        quote.sent_at = datetime.now(timezone.utc)
+        quote.sent_at = datetime.now(UTC)
         await self.quote_repo.commit()
         return quote
 

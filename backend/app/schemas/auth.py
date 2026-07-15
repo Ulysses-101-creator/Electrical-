@@ -1,12 +1,10 @@
 from __future__ import annotations
 
-import uuid
-
 from pydantic import EmailStr, Field, field_validator
 
+from app.lib_validation import validate_password_strength, validate_phone_number
 from app.schemas.base import APIModel
 from app.schemas.user import UserRead
-from app.lib_validation import validate_password_strength, validate_phone_number
 
 
 class RegisterRequest(APIModel):

@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import secrets
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 from typing import Any
 
@@ -46,7 +46,7 @@ def verify_password(raw_password: str, password_hash: str) -> bool:
 
 
 def create_access_token(*, subject: str, extra_claims: dict[str, Any] | None = None) -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     payload: dict[str, Any] = {
         "sub": subject,
         "type": TokenType.ACCESS.value,

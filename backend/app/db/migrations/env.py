@@ -8,11 +8,10 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from app.core.config import settings
-from app.db.session import Base
-
 # Import models so they register on Base.metadata for autogenerate.
 import app.models  # noqa: F401,E402
+from app.core.config import settings
+from app.db.session import Base
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)

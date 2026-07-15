@@ -7,7 +7,7 @@ traffic to prevent token-guessing abuse.
 
 from __future__ import annotations
 
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from fastapi import APIRouter, Request
 
@@ -15,7 +15,6 @@ from app.api.deps import AuditSvc, DBSession
 from app.core.config import settings
 from app.core.exceptions import ConflictError, NotFoundError
 from app.core.rate_limit import client_identifier, enforce_rate_limit
-from app.models.customer import Customer
 from app.repositories.customer_repository import CustomerRepository
 from app.repositories.quote_repository import QuoteRepository
 from app.schemas.public import (
@@ -94,7 +93,7 @@ async def respond_to_public_quote(
         raise ConflictError("This quote has expired and can no longer be responded to.")
 
     quote.status = payload.response
-    quote.responded_at = datetime.now(timezone.utc)
+    quote.responded_at = datetime.now(UTC)
     await session.commit()
 
     await audit_service.record(

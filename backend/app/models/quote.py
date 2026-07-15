@@ -5,8 +5,19 @@ from datetime import date, datetime
 from decimal import Decimal
 from enum import StrEnum
 
-from sqlalchemy import CheckConstraint, Date, DateTime, ForeignKey, Index, Integer, Numeric, String, Text
-from sqlalchemy.dialects.postgresql import JSONB, UUID as PGUUID
+from sqlalchemy import (
+    CheckConstraint,
+    Date,
+    DateTime,
+    ForeignKey,
+    Index,
+    Integer,
+    Numeric,
+    String,
+    Text,
+)
+from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy.dialects.postgresql import UUID as PGUUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
@@ -59,11 +70,11 @@ class Quote(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     responded_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
-    user: Mapped["User"] = relationship(back_populates="quotes")  # noqa: F821
-    customer: Mapped["Customer"] = relationship(back_populates="quotes")  # noqa: F821
-    items: Mapped[list["QuoteItem"]] = relationship(  # noqa: F821
+    user: Mapped[User] = relationship(back_populates="quotes")  # noqa: F821
+    customer: Mapped[Customer] = relationship(back_populates="quotes")  # noqa: F821
+    items: Mapped[list[QuoteItem]] = relationship(  # noqa: F821
         back_populates="quote", cascade="all, delete-orphan", order_by="QuoteItem.sort_order"
     )
-    photos: Mapped[list["QuotePhoto"]] = relationship(  # noqa: F821
+    photos: Mapped[list[QuotePhoto]] = relationship(  # noqa: F821
         back_populates="quote", cascade="all, delete-orphan", order_by="QuotePhoto.sort_order"
     )
