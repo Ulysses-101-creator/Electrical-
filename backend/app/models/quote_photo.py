@@ -8,7 +8,10 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
 from app.models.mixins import TimestampMixin, UUIDPrimaryKeyMixin
+from typing import TYPE_CHECKING
 
+if TYPE_CHECKING:
+    from app.models.quote import Quote
 
 class QuotePhoto(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "quote_photos"
