@@ -33,4 +33,4 @@ class Session(UUIDPrimaryKeyMixin, Base):
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from app.models.user import User	
+    from app.models.user import User  # noqa: F401

@@ -3,6 +3,7 @@ from __future__ import annotations
 import uuid
 from decimal import Decimal
 from enum import StrEnum
+from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, CheckConstraint, ForeignKey, Index, Integer, Numeric, String
 from sqlalchemy.dialects.postgresql import UUID as PGUUID
@@ -10,10 +11,9 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
 from app.models.mixins import TimestampMixin, UUIDPrimaryKeyMixin
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from app.models.quote import Quote
+    from app.models.quote import Quote  # noqa: F401
 
 class QuoteItemCategory(StrEnum):
     LABOR = "labor"

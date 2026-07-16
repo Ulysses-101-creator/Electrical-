@@ -2,18 +2,18 @@ from __future__ import annotations
 
 from datetime import datetime
 from decimal import Decimal
+from typing import TYPE_CHECKING
 
 from sqlalchemy import Boolean, CheckConstraint, DateTime, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.session import Base
 from app.models.mixins import TimestampMixin, UUIDPrimaryKeyMixin
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from app.models.customer import Customer
-    from app.models.quote import Quote
-    from app.models.session import Sessio
+    from app.models.customer import Customer  # noqa: F401
+    from app.models.quote import Quote  # noqa: F401
+    from app.models.session import Session  # noqa: F401
 
 class User(UUIDPrimaryKeyMixin, TimestampMixin, Base):
     __tablename__ = "users"
