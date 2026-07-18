@@ -16,13 +16,13 @@ interface ErrorBoundaryState {
  * error handling), since error boundaries do not catch those.
  */
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = { hasError: false };
+  override state: ErrorBoundaryState = { hasError: false };
 
   static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, info: ErrorInfo): void {
+  override componentDidCatch(error: Error, info: ErrorInfo): void {
     // eslint-disable-next-line no-console
     console.error("Unhandled UI error:", error, info.componentStack);
   }
@@ -31,7 +31,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     window.location.reload();
   };
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
