@@ -3,9 +3,9 @@
 export function formatCurrency(value: string | number): string {
   const numeric = typeof value === "string" ? Number.parseFloat(value) : value;
   if (Number.isNaN(numeric)) return "$0.00";
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("en-ZA", {
     style: "currency",
-    currency: "USD",
+    currency: "ZAR",
     minimumFractionDigits: 2,
   }).format(numeric);
 }
@@ -14,7 +14,7 @@ export function formatDate(isoDate: string | null | undefined): string {
   if (!isoDate) return "—";
   const date = new Date(isoDate);
   if (Number.isNaN(date.getTime())) return "—";
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat("en-ZA", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -29,7 +29,7 @@ export function formatRelativeDate(isoDate: string | null | undefined): string {
   const diffMs = date.getTime() - Date.now();
   const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
 
-  const rtf = new Intl.RelativeTimeFormat("en-US", { numeric: "auto" });
+  const rtf = new Intl.RelativeTimeFormat("en-ZA", { numeric: "auto" });
   if (Math.abs(diffDays) < 1) return "today";
   if (Math.abs(diffDays) < 30) return rtf.format(diffDays, "day");
   return formatDate(isoDate);
