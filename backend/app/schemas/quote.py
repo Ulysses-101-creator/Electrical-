@@ -4,12 +4,13 @@ import uuid
 from datetime import date, datetime
 from decimal import Decimal
 from typing import Literal
+from app.models.quote import QuoteStatus
 
 from pydantic import Field
 
 from app.schemas.base import APIModel
 
-QuoteStatusLiteral = Literal["draft", "sent", "accepted", "declined", "expired"]
+QuoteStatusLiteral = QuoteStatus
 QuoteItemCategoryLiteral = Literal["labor", "material", "callout", "other"]
 
 
