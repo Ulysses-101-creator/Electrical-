@@ -88,8 +88,8 @@ class PDFService:
                             item.description,
                             _CATEGORY_LABELS.get(item.category, item.category),
                             f"{item.quantity:g}",
-                            f"${item.unit_price:,.2f}",
-                            f"${line_total:,.2f}",
+                            f"R{item.unit_price:,.2f}",
+                            f"R{line_total:,.2f}",
                         ]
                     )
 
@@ -125,9 +125,9 @@ class PDFService:
         elements.append(Spacer(1, 16))
 
         totals_data = [
-            ["Subtotal", f"${quote.subtotal:,.2f}"],
-            [f"Tax ({(quote.tax_rate * Decimal(100)):.2f}%)", f"${quote.tax_amount:,.2f}"],
-            ["Total", f"${quote.total:,.2f}"],
+            ["Subtotal", f"R{quote.subtotal:,.2f}"],
+            [f"Tax ({(quote.tax_rate * Decimal(100)):.2f}%)", f"R{quote.tax_amount:,.2f}"],
+            ["Total", f"R{quote.total:,.2f}"],
         ]
         totals_table = Table(totals_data, colWidths=[5.4 * inch, 1.1 * inch])
         totals_table.setStyle(

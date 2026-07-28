@@ -56,7 +56,7 @@ class NotificationService:
         return self.whatsapp_client.build_share_link(
             phone=customer.phone,
             business_name=user.business_name,
-            total=f"${quote.total:,.2f}",
+            total=f"R{quote.total:,.2f}",
             quote_url=quote_url,
         )
 
