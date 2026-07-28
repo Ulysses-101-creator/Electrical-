@@ -277,6 +277,7 @@ class QuoteService:
         quote.status = QuoteStatus.SENT
         quote.sent_at = datetime.now(UTC)
         await self.quote_repo.commit()
+        await self.quote_repo.session.refresh(quote)
         return quote
 
     # --- Internal ---
