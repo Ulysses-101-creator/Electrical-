@@ -61,18 +61,6 @@ export function SendQuoteModal({ isOpen, onClose, quote, customer, onSent }: Sen
           <p className="-mt-2 text-sm text-ink-500">Add a phone number for this customer first.</p>
         )}
 
-        <Button
-          fullWidth
-          variant="secondary"
-          onClick={() => void handleSend("email")}
-          isLoading={isSending === "email"}
-          disabled={!customer.email}
-        >
-          Send via Email
-        </Button>
-        {!customer.email && (
-          <p className="-mt-2 text-sm text-ink-500">Add an email address for this customer first.</p>
-        )}
       </div>
     </Modal>
   );
