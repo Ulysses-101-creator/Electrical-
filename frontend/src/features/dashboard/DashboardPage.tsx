@@ -90,13 +90,13 @@ export function DashboardPage() {
                 <p className="text-sm text-ink-500">Quotes this week</p>
                 <p className="mt-1 text-2xl font-bold text-ink-900">{recentQuotes.length}</p>
               </Card>
-              <Card>
+              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
                 <p className="text-sm text-ink-500">Quoted value (7 days)</p>
                 <p className="mt-1 text-2xl font-bold text-ink-900">
                   {formatCurrency(totalQuotedValue)}
                 </p>
               </Card>
-              <Card>
+              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
                 <p className="text-sm text-ink-500">Acceptance rate</p>
                 <p className="mt-1 text-2xl font-bold text-ink-900">
                   {acceptanceRate !== null ? `${acceptanceRate}%` : "—"}
