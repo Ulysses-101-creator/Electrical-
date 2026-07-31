@@ -15,5 +15,10 @@
       "Segoe UI",
       Roboto,
       sans-serif;
+    background-color: #F8FAFC;
+color: #111827;
+line-height: 1.5;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
   }
 }
