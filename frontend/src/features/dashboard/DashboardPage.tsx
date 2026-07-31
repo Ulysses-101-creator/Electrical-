@@ -86,7 +86,7 @@ export function DashboardPage() {
         ) : (
           <>
             <div className="grid grid-cols-2 gap-4">
-              <Card>
+              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
                 <p className="text-sm text-ink-500">Quotes this week</p>
                 <p className="mt-1 text-2xl font-bold text-ink-900">{recentQuotes.length}</p>
               </Card>
