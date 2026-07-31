@@ -1,3 +1,4 @@
+import LandingPage from '@/features/landing/LandingPage';
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 import { AppShell } from "@/components/layout/AppShell";
@@ -16,7 +17,7 @@ import { QuoteListPage } from "@/features/quotes/pages/QuoteListPage";
 import { SettingsPage } from "@/features/settings/SettingsPage";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <Navigate to="/dashboard" replace /> },
+  { path: "/", element: <LandingPage /> }
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/forgot-password", element: <ForgotPasswordPage /> },
