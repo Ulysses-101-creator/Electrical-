@@ -17,7 +17,7 @@ import { QuoteListPage } from "@/features/quotes/pages/QuoteListPage";
 import { SettingsPage } from "@/features/settings/SettingsPage";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <LandingPage /> }
+  { path: "/", element: <LandingPage /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
   { path: "/forgot-password", element: <ForgotPasswordPage /> },
