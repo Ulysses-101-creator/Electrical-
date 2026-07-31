@@ -45,7 +45,29 @@ export function DashboardPage() {
       <TopBar title="Dashboard" />
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-6">
-        <div className="hidden items-center justify-between sm:flex">
+       <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
+  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <p className="text-sm font-medium uppercase tracking-[0.25em] text-brand-400">
+        ElectricQuote AI
+      </p>
+
+      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white">
+        Welcome back{user?.business_name ? `, ${user.business_name}` : ""}
+      </h1>
+
+      <p className="mt-2 text-slate-400">
+        Here's your business at a glance today.
+      </p>
+    </div>
+
+    <Link to="/quotes/new">
+      <Button className="w-full sm:w-auto">
+        ⚡ New Quote
+      </Button>
+    </Link>
+  </div>
+</div>
           <div>
             <h1 className="text-2xl font-bold text-ink-900">
               Welcome back, {user?.business_name}
