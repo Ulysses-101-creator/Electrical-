@@ -1,3 +1,6 @@
+export default function LandingPage() {
+  return (
+
 <main className="mx-auto max-w-7xl px-6 py-28">
   <div className="grid gap-20 lg:grid-cols-[1.2fr_0.8fr]">
     <div className="pt-8">
@@ -61,3 +64,5 @@
     </div>
   </div>
 </main>
+  );
+}
