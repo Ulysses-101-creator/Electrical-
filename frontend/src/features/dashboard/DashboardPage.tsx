@@ -9,7 +9,7 @@ import { Spinner } from "@/components/common/Spinner";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { TopBar } from "@/components/layout/TopBar";
 import { useAuth } from "@/features/auth/useAuth";
-import { formatCurrency, formatDate } from "@/lib/format";
+import { formatCurrency, formatDate } from "@/lib/utils";
 import type { Quote } from "@/types";
 
 function isWithinLast7Days(isoDate: string): boolean {
