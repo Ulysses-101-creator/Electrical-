@@ -5,16 +5,16 @@
         South African electrical contractors
       </p>
 
-      <h1 className="mt-8 text-6xl font-semibold leading-none tracking-tight md:text-8xl">
-        Quotes that
-        <br />
-        close jobs.
-      </h1>
+<h1 className="mt-8 text-6xl font-semibold leading-[0.92] tracking-[-0.04em] md:text-8xl">
+  The fastest way
+  <br />
+     to price electrical work.
+     </h1
 
-      <p className="mt-10 max-w-lg text-xl leading-9 text-slate-400">
-        Stop building quotes in Word and Excel. Create professional quotations,
-        send them in minutes, and manage customers from one clean workspace.
-      </p>
+<p className="mt-10 max-w-xl text-xl leading-9 text-slate-400">
+  Create professional quotations in under a minute, send them to clients instantly,
+  and manage every customer and job from one streamlined workspace.
+</p>
 
       <div className="mt-12 flex gap-4">
         <a href="/register" className="bg-white text-black px-6 py-3 rounded-lg font-medium">
@@ -28,7 +28,8 @@
 
     <div id="sample" className="border border-white/10 bg-white text-black rounded-xl p-8">
       <div className="border-b border-gray-200 pb-6">
-        <h2 className="text-xl font-semibold">ElectricQuote</h2>
+<h2 className="text-xl font-semibold tracking-tight">Quotation #2048</h2>
+<p className="text-sm text-gray-500">Issued to: Sandton Office Park</p>
         <p className="text-sm text-gray-500">Professional quotation</p>
       </div>
 
