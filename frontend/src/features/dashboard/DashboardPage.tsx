@@ -52,9 +52,47 @@ export function DashboardPage() {
         ElectricQuote AI
       </p>
 
-      <h1 className="mt-2 text-3xl font-extrabold tracking-tight text-white">
-        Welcome back{user?.business_name ? `, ${user.business_name}` : ""}
-      </h1>
+<div className="min-h-screen bg-[#050816] text-white">
+  <div className="mx-auto max-w-7xl px-6 py-10">
+    <div className="flex items-start justify-between border-b border-white/10 pb-8">
+      <div>
+        <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
+          Dashboard
+        </p>
+        <h1 className="mt-4 text-4xl font-semibold tracking-tight">
+          Good evening
+        </h1>
+        <p className="mt-3 text-slate-400">
+          Here’s what’s happening in your business today.
+        </p>
+      </div>
+
+      <a
+        href="/quotes/new"
+        className="rounded-lg bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-slate-200"
+      >
+        + New quote
+      </a>
+    </div>
+
+    <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <p className="text-sm text-slate-400">Quotes this month</p>
+        <p className="mt-3 text-4xl font-semibold">18</p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <p className="text-sm text-slate-400">Revenue quoted</p>
+        <p className="mt-3 text-4xl font-semibold">R142,500</p>
+      </div>
+
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
+        <p className="text-sm text-slate-400">Win rate</p>
+        <p className="mt-3 text-4xl font-semibold">68%</p>
+      </div>
+    </div>
+  </div>
+</div>
 
       <p className="mt-2 text-slate-400">
         Here's your business at a glance today.
