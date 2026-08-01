@@ -9,7 +9,7 @@
   The fastest way
   <br />
      to price electrical work.
-     </h1
+     </h1>
 
 <p className="mt-10 max-w-xl text-xl leading-9 text-slate-400">
   Create professional quotations in under a minute, send them to clients instantly,
