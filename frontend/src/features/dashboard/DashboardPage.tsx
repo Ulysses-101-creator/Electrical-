@@ -28,161 +28,127 @@ export function DashboardPage() {
   });
 
   const quotes = data?.items ?? [];
-  const recentQuotes = quotes.filter((q) => isWithinLast7Days(q.created_at));
-  const totalQuotedValue = recentQuotes.reduce((sum, q) => sum + Number.parseFloat(q.total), 0);
-  const respondedQuotes = quotes.filter((q) => q.status === "accepted" || q.status === "declined");
+  const recentQuotes = quotes.filter((q) => isWithinLast7Days(q.createdAt));
+  const totalQuotedValue = recentQuotes.reduce((sum, q) => sum + q.total, 0);
+
+  const respondedQuotes = quotes.filter(
+    (q) => q.status === "accepted" || q.status === "rejected"
+  );
+
   const acceptanceRate =
     respondedQuotes.length > 0
       ? Math.round(
           (respondedQuotes.filter((q) => q.status === "accepted").length /
             respondedQuotes.length) *
-            100,
+            100
         )
-      : null;
+      : 0;
 
   return (
-    <>
+    <div className="min-h-screen bg-[#050816] text-white">
       <TopBar title="Dashboard" />
-      <div className="flex flex-col gap-6">
-        <div className="flex flex-col gap-6">
-       <div className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-  <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-    <div>
-      <p className="text-sm font-medium uppercase tracking-[0.25em] text-brand-400">
-        ElectricQuote AI
-      </p>
 
-<div className="min-h-screen bg-[#050816] text-white">
-  <div className="mx-auto max-w-7xl px-6 py-10">
-    <div className="flex items-start justify-between border-b border-white/10 pb-8">
-      <div>
-        <p className="text-xs uppercase tracking-[0.3em] text-blue-400">
-          Dashboard
-        </p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight">
-          Good evening
-        </h1>
-        <p className="mt-3 text-slate-400">
-          Here’s what’s happening in your business today.
-        </p>
-      </div>
-
-      <a
-        href="/quotes/new"
-        className="rounded-lg bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-slate-200"
-      >
-        + New quote
-      </a>
-    </div>
-
-    <div className="mt-10 grid gap-4 md:grid-cols-3">
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <p className="text-sm text-slate-400">Quotes this month</p>
-        <p className="mt-3 text-4xl font-semibold">18</p>
-      </div>
-
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <p className="text-sm text-slate-400">Revenue quoted</p>
-        <p className="mt-3 text-4xl font-semibold">R142,500</p>
-      </div>
-
-      <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-        <p className="text-sm text-slate-400">Win rate</p>
-        <p className="mt-3 text-4xl font-semibold">68%</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-      <p className="mt-2 text-slate-400">
-        Here's your business at a glance today.
-      </p>
-    </div>
-
-    <Link to="/quotes/new">
-      <Button className="w-full sm:w-auto">
-        ⚡ New Quote
-      </Button>
-    </Link>
-  </div>
-</div>
+      <main className="mx-auto max-w-7xl px-6 py-10 space-y-8">
+        <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-ink-900">
-              Welcome back, {user?.business_name}
+            <p className="text-xs uppercase tracking-[0.35em] text-blue-400">
+              ElectricQuote AI
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight">
+              Good evening, {user?.business_name ?? "Contractor"}
             </h1>
-            <p className="text-sm text-ink-500">Here's how your quoting is going.</p>
+            <p className="mt-3 text-slate-400">
+              Here’s what’s happening in your business today.
+            </p>
           </div>
+
           <Link to="/quotes/new">
-            <Button>New Quote</Button>
+            <Button className="bg-white text-black hover:bg-slate-200">
+              New quote
+            </Button>
           </Link>
         </div>
 
-        {isLoading ? (
-          <div className="py-12">
-            <Spinner size="lg" />
-          </div>
-        ) : (
-          <>
-            <div className="grid grid-cols-2 gap-4">
-              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                <p className="text-sm text-ink-500">Quotes this week</p>
-                <p className="mt-1 text-2xl font-bold text-ink-900">{recentQuotes.length}</p>
-              </Card>
-              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                <p className="text-sm text-ink-500">Quoted value (7 days)</p>
-                <p className="mt-1 text-2xl font-bold text-ink-900">
-                  {formatCurrency(totalQuotedValue)}
-                </p>
-              </Card>
-              <Card className="rounded-3xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-                <p className="text-sm text-ink-500">Acceptance rate</p>
-                <p className="mt-1 text-2xl font-bold text-ink-900">
-                  {acceptanceRate !== null ? `${acceptanceRate}%` : "—"}
-                </p>
-              </Card>
-            </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          <Card className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <p className="text-sm text-slate-400">Quotes this week</p>
+            <p className="mt-3 text-4xl font-semibold">
+              {recentQuotes.length}
+            </p>
+          </Card>
 
+          <Card className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <p className="text-sm text-slate-400">Revenue quoted</p>
+            <p className="mt-3 text-4xl font-semibold">
+              {formatCurrency(totalQuotedValue)}
+            </p>
+          </Card>
+
+          <Card className="rounded-2xl border border-white/10 bg-white/5 p-6">
+            <p className="text-sm text-slate-400">Acceptance rate</p>
+            <p className="mt-3 text-4xl font-semibold">
+              {acceptanceRate}%
+            </p>
+          </Card>
+        </div>
+
+        <Card className="rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div className="flex items-center justify-between">
             <div>
-              <h2 className="mb-3 text-lg font-semibold text-ink-900">Recent quotes</h2>
-              {quotes.length === 0 ? (
-                <EmptyState
-                  title="No quotes yet"
-                  description="Create your first quote and send it in under a minute."
-                  action={
-                    <Link to="/quotes/new">
-                      <Button>Create your first quote</Button>
-                    </Link>
-                  }
-                />
-              ) : (
-                <div className="flex flex-col gap-2">
-                  {quotes.slice(0, 5).map((quote: Quote) => (
-                    <Link key={quote.id} to={`/quotes/${quote.id}`}>
-                      <Card className="flex items-center justify-between hover:border-brand-300">
-                        <div>
-                          <p className="font-medium text-ink-900">
-                            {formatCurrency(quote.total)}
-                          </p>
-                          <p className="text-sm text-ink-500">{formatDate(quote.created_at)}</p>
-                        </div>
-                        <StatusBadge status={quote.status} />
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              )}
+              <h2 className="text-xl font-semibold">Recent quotes</h2>
+              <p className="text-sm text-slate-400">
+                Your latest quotations and client activity.
+              </p>
             </div>
-          </>
-        )}
-      </div>
+            <Link to="/quotes" className="text-sm text-blue-400">
+              View all
+            </Link>
+          </div>
 
-      <Link
-        to="/quotes/new"
-        className="fixed bottom-20 right-4 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-brand-600 text-2xl text-white shadow-lg sm:hidden"
-        aria-label="New quote"
-      >
-        +
-      </Link>
-    </>
+          {isLoading ? (
+            <div className="py-12 flex justify-center">
+              <Spinner size="lg" />
+            </div>
+          ) : quotes.length === 0 ? (
+            <div className="py-12">
+              <EmptyState
+                title="No quotes yet"
+                description="Create your first professional quotation."
+                action={
+                  <Link to="/quotes/new">
+                    <Button>Create quote</Button>
+                  </Link>
+                }
+              />
+            </div>
+          ) : (
+            <div className="mt-6 divide-y divide-white/10">
+              {quotes.slice(0, 5).map((quote: Quote) => (
+                <div
+                  key={quote.id}
+                  className="flex items-center justify-between py-4"
+                >
+                  <div>
+                    <p className="font-medium">{quote.clientName}</p>
+                    <p className="text-sm text-slate-400">
+                      {formatDate(quote.createdAt)}
+                    </p>
+                  </div>
+
+                  <div className="text-right">
+                    <p className="font-semibold">
+                      {formatCurrency(quote.total)}
+                    </p>
+                    <div className="mt-2 flex justify-end">
+                      <StatusBadge status={quote.status} />
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </Card>
+      </main>
+    </div>
   );
 }
