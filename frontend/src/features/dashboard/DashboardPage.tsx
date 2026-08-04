@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-
+A
 import { quotesApi } from "@/api/quotes";
 import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
@@ -66,11 +66,7 @@ return (
         </p>
       </div>
 
-      <Link to="/quotes/new">
-        <Button className="rounded-xl bg-slate-900 px-5 py-3 text-white hover:bg-slate-800">
-          + New quote
-        </Button>
-      </Link>
+
     </div>
 
       <Link to="/quotes/new">
