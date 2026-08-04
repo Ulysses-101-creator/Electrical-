@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-A
 import { quotesApi } from "@/api/quotes";
 import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
