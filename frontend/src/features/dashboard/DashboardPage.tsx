@@ -52,8 +52,8 @@ return (
   <TopBar title="Dashboard" />
 
   <main className="mx-auto max-w-7xl px-6 py-8">
-    <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-      <div>
+          <div>
+            <section className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600">
           ElectricQuote AI
         </p>
