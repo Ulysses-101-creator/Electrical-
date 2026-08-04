@@ -49,22 +49,29 @@ const outstandingQuotes = quotes.filter(
 ).length;
 
 return (
-<div className="min-h-screen bg-[#050816] text-white">
-<TopBar title="Dashboard" />
+<div className="min-h-screen bg-[#f6f7fb] text-slate-900">
+  <TopBar title="Dashboard" />
 
-  <main className="mx-auto max-w-7xl px-6 py-10">
-    <section className="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+  <main className="mx-auto max-w-7xl px-6 py-8">
+    <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
       <div>
-        <p className="text-xs uppercase tracking-[0.35em] text-blue-400">
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-blue-600">
           ElectricQuote AI
         </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight">
+        <h1 className="mt-2 text-4xl font-bold tracking-tight text-slate-900">
           Good afternoon, {user?.business_name ?? "Contractor"}
         </h1>
-        <p className="mt-3 max-w-2xl text-slate-400">
+        <p className="mt-3 max-w-2xl text-slate-600">
           Track quotes, customers, and revenue from one professional workspace.
         </p>
       </div>
+
+      <Link to="/quotes/new">
+        <Button className="rounded-xl bg-slate-900 px-5 py-3 text-white hover:bg-slate-800">
+          + New quote
+        </Button>
+      </Link>
+    </div>
 
       <Link to="/quotes/new">
         <Button className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-black hover:bg-slate-200">
