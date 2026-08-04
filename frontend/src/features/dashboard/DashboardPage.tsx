@@ -49,7 +49,7 @@ const outstandingQuotes = quotes.filter(
 
 return (
 <div className="min-h-screen bg-[#f6f7fb] text-slate-900">
-  <TopBar title="Dashboard" />
+   <TopBar title="Dashboard" />
 
   <main className="mx-auto max-w-7xl px-6 py-8">
           <div>
@@ -80,7 +80,8 @@ return (
       <Card className="rounded-2xl border border-white/10 bg-[#0F172A] p-6">
         <p className="text-sm text-slate-400">Quotes this week</p>
         <p className="mt-3 text-4xl font-semibold">
-          {recentQuotes.length}
+       
+  {recentQuotes.length}
         </p>
       </Card>
 
