@@ -27,11 +27,10 @@ Job description:
 {job_description}
 '''
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt,
-    )
-
+response = client.models.generate_content(
+    model="gemini-2.5-flash-lite",
+    contents=prompt,
+)
     text = response.text.strip()
 
     if text.startswith("```"):
