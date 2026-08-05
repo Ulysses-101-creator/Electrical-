@@ -55,7 +55,7 @@ class QuoteGenerateRequest(BaseModel):
 
 @router.post("/generate")
 def generate_quote_endpoint(request: QuoteGener>
-    return generate_quote(request.job_descripti>
+    return generate_quote(request.job_descripti)
 
 
 DEFAULT_PAGE_SIZE = 20
