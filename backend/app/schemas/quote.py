@@ -93,6 +93,7 @@ class QuoteSummary(APIModel):
     total: Decimal
     created_at: datetime
     valid_until: date | None
+    customer_name: str
 
 
 class QuoteDetailResponse(APIModel):

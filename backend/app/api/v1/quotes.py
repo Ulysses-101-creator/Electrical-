@@ -1,5 +1,8 @@
 """Quote endpoints: CRUD, line items, photos, PDF generation, sending, status."""
 
+from pydantic import BaseModel
+from app.services.gemini import generate_quote
+
 from __future__ import annotations
 
 import base64
@@ -44,6 +47,13 @@ from app.schemas.quote import (
     QuoteTotals,
     QuoteUpdateRequest,
 )
+
+class QuoteGenerateRequest(BaseModel):
+    job_description: str
+
+@router.post("/generate")
+def generate_quote_endpoint(request: QuoteGenerateRequest):
+    return generate_quote(request.job_description)
 
 router = APIRouter(prefix="/quotes", tags=["quotes"])
 
@@ -323,3 +333,6 @@ async def set_quote_status(
         metadata={"status": payload.status},
     )
     return QuoteRead.model_validate(quote)
+@router.post("/generate")
+def generate_quote_endpoint(request: QuoteGenerateRequest):
+    return generate_quote(request.job_description)
