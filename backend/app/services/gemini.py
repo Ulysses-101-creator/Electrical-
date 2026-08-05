@@ -33,10 +33,10 @@ response = client.models.generate_content(
 )
 text = response.text.strip()
 
-    if text.startswith("```"):
-        text = text.strip('`')
-    if text.startswith("json"):
-        text = text[4:].strip()
+if text.startswith("```"):
+    text = text.strip('`')
+if text.startswith("json"):
+    text = text[4:].strip()
 
     return json.loads(text)
 
