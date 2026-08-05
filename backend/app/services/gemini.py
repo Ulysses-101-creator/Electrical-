@@ -31,12 +31,12 @@ response = client.models.generate_content(
     model="gemini-2.5-flash-lite",
     contents=prompt,
 )
-    text = response.text.strip()
+text = response.text.strip()
 
     if text.startswith("```"):
-         text = text.strip('`')
+        text = text.strip('`')
     if text.startswith("json"):
-         text = text[4:].strip()
+        text = text[4:].strip()
 
     return json.loads(text)
-6
+
