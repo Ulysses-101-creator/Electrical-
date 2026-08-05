@@ -54,9 +54,8 @@ class QuoteGenerateRequest(BaseModel):
     job_description: str
 
 @router.post("/generate")
-def generate_quote_endpoint(request: QuoteGener>
-    return generate_quote(request.job_descripti)
-
+def generate_quote_endpoint(request: QuoteGenerateRequest):
+    return generate_quote(request.job_description)
 
 DEFAULT_PAGE_SIZE = 20
 MAX_PHOTO_SIZE_BYTES = 10 * 1024 * 1024
