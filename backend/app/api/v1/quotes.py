@@ -1,9 +1,9 @@
 """Quote endpoints: CRUD, line items, photos, PDF generation, sending, status."""
+from __future__ import annotations
 
 from pydantic import BaseModel
 from app.services.gemini import generate_quote
 
-from __future__ import annotations
 
 import base64
 import uuid
