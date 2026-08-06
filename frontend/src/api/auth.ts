@@ -14,33 +14,33 @@ export const authApi = {
     password?: string;
     business_name: string;
   }): Promise<AuthResponse> {
-    const { data } = await apiClient.post<AuthResponse>("/auth/register", payload);
+    const { data } = await apiClient.post<AuthResponse>("api/v1/auth/register", payload);
     return data;
   },
 
   async login(payload: { email: string; password: string }): Promise<AuthResponse> {
-    const { data } = await apiClient.post<AuthResponse>("/auth/login", payload);
+    const { data } = await apiClient.post<AuthResponse>("api/v1/auth/login", payload);
     return data;
   },
 
   async requestOtp(phone: string): Promise<void> {
-    await apiClient.post("/auth/otp/request", { phone });
+    await apiClient.post("api/v1/auth/otp/request", { phone });
   },
 
   async verifyOtp(phone: string, code: string): Promise<AuthResponse> {
-    const { data } = await apiClient.post<AuthResponse>("/auth/otp/verify", { phone, code });
+    const { data } = await apiClient.post<AuthResponse>("api/v1/auth/otp/verify", { phone, code });
     return data;
   },
 
   async logout(refreshToken: string): Promise<void> {
-    await apiClient.post("/auth/logout", { refresh_token: refreshToken });
+    await apiClient.post("api/v1/auth/logout", { refresh_token: refreshToken });
   },
 
   async forgotPassword(email: string): Promise<void> {
-    await apiClient.post("/auth/password/forgot", { email });
+    await apiClient.post("api/v1/auth/password/forgot", { email });
   },
 
   async resetPassword(token: string, newPassword: string): Promise<void> {
-    await apiClient.post("/auth/password/reset", { token, new_password: newPassword });
+    await apiClient.post("api/v1/auth/password/reset", { token, new_password: newPassword });
   },
 };
