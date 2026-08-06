@@ -4,7 +4,7 @@ import { tokenStorage } from "@/lib/tokenStorage";
 import type { ApiErrorBody } from "@/types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "https://electrical-ai.onrender.com/api/v1
-apiClient.post("/customers", payload)";
+
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
