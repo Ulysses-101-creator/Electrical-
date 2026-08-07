@@ -10,5 +10,5 @@ export const publicApi = {
   },
 
   // Add other public endpoints here as needed
-  // All endpoints should be relative to the baseURL from client.ts
+  // All use the same apiClient instance with correct baseURL
 };
