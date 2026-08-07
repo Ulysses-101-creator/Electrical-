@@ -1,16 +1,6 @@
 import axios from "axios";
 import type { ApiErrorBody } from "@/types";
 
- HEAD
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "https://electrical-ai.onrender.com/api/v1
-
-
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ??
-  "https://electrical-ai.onrender.com/api/v1";
-import axios from "axios";
-import type { ApiErrorBody } from "@/types";
-
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ??
   "https://electrical-ai.onrender.com/api/v1";
