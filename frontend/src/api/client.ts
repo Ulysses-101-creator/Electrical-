@@ -29,3 +29,15 @@ apiClient.interceptors.response.use(
     return Promise.reject(apiError);
   }
 );
+
+export function getApiErrorMessage(error: unknown, fallback: string): string {
+  if (
+    error &&
+    typeof error === "object" &&
+    "message" in error &&
+    typeof (error as ApiErrorBody).message === "string"
+  ) {
+    return (error as ApiErrorBody).message || fallback;
+  }
+  return fallback;
+}
