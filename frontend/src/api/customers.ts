@@ -21,7 +21,7 @@ export const customersApi = {
 
   async create(payload: CustomerPayload): Promise<{ customer: Customer; duplicate_warning: boolean }> {
     const { data } = await apiClient.post<{ customer: Customer; duplicate_warning: boolean }>(
-      /"customers",
+      "/customers",
       payload,
     );
     return data;
