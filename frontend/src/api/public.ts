@@ -1,14 +1,26 @@
 import { apiClient } from "@/api/client";
 import type { PublicQuote } from "@/types";
 
-export const publicApi = {
-  async getPublicQuote(shareId: string): Promise<{ quote: PublicQuote }> {
-    const { data } = await apiClient.get<{ quote: PublicQuote }>(
-      `/public/quotes/${shareId}`
+export interface PublicQuoteRespondPayload {
+  response: "accepted" | "declined";
+}
+
+export const publicQuoteApi = {
+  async get(shareToken: string): Promise<PublicQuote> {
+    const { data } = await apiClient.get<PublicQuote>(
+      `/public/quotes/${shareToken}`
     );
     return data;
   },
 
-  // Add other public endpoints here as needed
-  // All use the same apiClient instance with correct baseURL
+  async respond(
+    shareToken: string,
+    response: "accepted" | "declined"
+  ): Promise<PublicQuote> {
+    const { data } = await apiClient.post<PublicQuote>(
+      `/public/quotes/${shareToken}/respond`,
+      { response }
+    );
+    return data;
+  },
 };
