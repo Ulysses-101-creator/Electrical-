@@ -47,4 +47,4 @@ class CustomerRepository(BaseRepository[Customer]):
         if exclude_id:
             stmt = stmt.where(Customer.id != exclude_id)
         result = await self.session.execute(stmt)
-        return result.scalar_one_or_none()
+        return result.scalars().first()
