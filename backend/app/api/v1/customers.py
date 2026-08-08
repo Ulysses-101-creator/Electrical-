@@ -75,7 +75,14 @@ async def get_customer(
     return CustomerDetailResponse(
         customer=CustomerRead.model_validate(customer),
         quotes=[
-            QuoteSummary.model_validate(q, from_attributes=True, update={"customer_name": customer.name})
+            QuoteSummary(
+                id=q.id,
+                status=q.status,
+                total=q.total,
+                created_at=q.created_at,
+                valid_until=q.valid_until,
+                customer_name=customer.name,
+            )
             for q in quotes
         ],
     )
