@@ -31,7 +31,7 @@ export default function LandingPage() {
     <div className="min-h-screen bg-[#0a0a0a] text-neutral-100 antialiased">
       <nav className="py-6">
         <div className="mx-auto flex max-w-[980px] items-center justify-between px-6">
-          <span className="text-[15px] font-bold">ElectricQuote</span>
+          <span className="text-[15px] font-bold">ElectricQuote TEST123</span>
           <div className="flex items-center gap-8">
             <a
               href="#how"
