@@ -1,7 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-import { Outlet } from "react-router-dom";
-
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Sidebar } from "@/components/layout/Sidebar";
 
